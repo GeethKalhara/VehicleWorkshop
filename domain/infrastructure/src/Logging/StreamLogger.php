@@ -8,6 +8,7 @@ use DateTimeImmutable;
 use Override;
 use Vwork\Domain\Infrastructure\Cache\ICache;
 use Vwork\Domain\Infrastructure\InfrastructureError;
+use Vwork\Shared\Encoding\Json;
 
 /**
  * Logs to anything with a hole. I mean a Stream endpoint
@@ -106,7 +107,7 @@ final class StreamLogger implements ILogger
             '@{ts}' => (new DateTimeImmutable("now"))->format(DATE_ATOM),
             '@{lvl}' => $level->description(),
             '@{msg}' => $message,
-            '@{ctx}' => json_encode($context, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+            '@{ctx}' => Json::encode($context)
         ]);
 
         fwrite($this->stream, $line . PHP_EOL);

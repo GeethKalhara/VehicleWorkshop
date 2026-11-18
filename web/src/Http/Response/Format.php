@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Vwork\Web\Http\Response;
 
+use Vwork\Shared\Encoding\Json;
 use Vwork\Web\WebError;
 
 /**
@@ -39,10 +40,9 @@ enum Format
             self::Html, self::Text => is_string($value)
                 ? $value
                 : throw new WebError("Format::{$this->name} expects a string"),
-            self::Json => json_encode(
-                $value,
-                JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_LINE_TERMINATORS
-            ),
+            self::Json => is_array($value)
+                ? Json::encode($value)
+                : throw new WebError("Cannot encode non-array types to Json"),
             // self::Cbor => cbor_encode($value, CBOR_TEXT | CBOR_KEY_TEXT),
         };
     }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Vwork\Web\Http\Response;
 
 use Closure;
+use Vwork\Shared\Encoding\Base64Url;
 use Vwork\Web\WebError;
 use Vwork\Web\Http\Headers\ResponseHeaders;
 use Vwork\Web\Http\HttpStatus;
@@ -146,7 +147,7 @@ final readonly class StreamResponses
 
                     $payload = $format->encode($value);
                     if ($base64) {
-                        $payload = base64_encode($payload);
+                        $payload = Base64Url::encode($payload);
                     }
 
                     $frame = is_string($event) ? "event: {$event}\n" : '';

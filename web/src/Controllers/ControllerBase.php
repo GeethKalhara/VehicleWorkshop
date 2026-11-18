@@ -9,7 +9,7 @@ use Vwork\Web\Http\Cookies\HttpCookies;
 use Vwork\Web\Http\Headers\RequestHeaders;
 use Vwork\Web\Http\Request\Request;
 use Vwork\Web\Utils\AssetParser;
-use Vwork\Web\Utils\CsrfToken;
+use Vwork\Web\Utils\CsrfTokenGenerator;
 use Vwork\Web\Utils\View;
 
 /**
@@ -23,13 +23,13 @@ use Vwork\Web\Utils\View;
 abstract readonly class ControllerBase implements IController
 {
     protected View $view;
-    private CsrfToken $csrf;
+    private CsrfTokenGenerator $csrf;
     private AssetParser $assets;
 
     public function __construct(IRegistry $registry)
     {
         $this->view = $registry->get(view::class);
-        $this->csrf = $registry->get(CsrfToken::class);
+        $this->csrf = $registry->get(CsrfTokenGenerator::class);
         $this->assets = $registry->get(AssetParser::class);
     }
 

@@ -14,7 +14,7 @@ use Vwork\Shared\Collections\IRegistry;
 use Vwork\Web\Http\Request\Request;
 use Vwork\Web\Test\Stubs\ControllerBaseStub;
 use Vwork\Web\Utils\AssetParser;
-use Vwork\Web\Utils\CsrfToken;
+use Vwork\Web\Utils\CsrfTokenGenerator;
 use Vwork\Web\Utils\IUtility;
 use Vwork\Web\Utils\View;
 use Vwork\Web\WebError;
@@ -40,9 +40,9 @@ final class ControllerBaseTest extends TestCase
         parent::tearDown();
     }
 
-    private static function csrf(): CsrfToken
+    private static function csrf(): CsrfTokenGenerator
     {
-        return new CsrfToken(self::SECRET, new Randomizer());
+        return new CsrfTokenGenerator(self::SECRET, new Randomizer());
     }
 
     private static function controller(): ControllerBaseStub
@@ -50,7 +50,7 @@ final class ControllerBaseTest extends TestCase
         $registry = new ImmutableRegistry(
             [
                 View::class => static fn (IRegistry $r) => new View('web/test/Fixtures/Views'),
-                CsrfToken::class => static fn (IRegistry $r) => self::csrf(),
+                CsrfTokenGenerator::class => static fn (IRegistry $r) => self::csrf(),
                 AssetParser::class => static fn (IRegistry $r) => new AssetParser('web/test/Fixtures/Assets/assets.json')
             ],
             [IUtility::class]
