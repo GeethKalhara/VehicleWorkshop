@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Vwork\Web\Utils;
 
 use JsonException;
+use Vwork\Shared\Encoding\Json;
 use Vwork\Web\WebError;
 
 /**
@@ -37,7 +38,7 @@ final readonly class AssetParser implements IUtility
         }
 
         try {
-            $raw = json_decode((string) file_get_contents($real), true, flags: JSON_THROW_ON_ERROR);
+            $raw = Json::decode((string) file_get_contents($real));
         } catch (JsonException $e) {
             throw new WebError("Asset manifest is not valid JSON: {$manifestPath}", $e);
         }

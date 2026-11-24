@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
+use Random\Engine\Secure;
 use Random\Randomizer;
 use Vwork\Shared\Collections\IRegistry;
 use Vwork\Web\Utils\AssetParser;
-use Vwork\Web\Utils\CsrfToken;
+use Vwork\Web\Utils\CsrfTokenGenerator;
 use Vwork\Web\Utils\IUtility;
 use Vwork\Web\Utils\View;
 
@@ -19,9 +20,9 @@ return [
     View::class => static fn (IRegistry $r) => new View(
         dir: 'web/resources/views'
     ),
-    CsrfToken::class => static fn (IRegistry $r) => new CsrfToken(
+    CsrfTokenGenerator::class => static fn (IRegistry $r) => new CsrfTokenGenerator(
         secret: 'secret',
-        random: new Randomizer()
+        rand: new Randomizer(new Secure())
     ),
     AssetParser::class => static fn (IRegistry $r) => new AssetParser(
         manifestPath: 'web/resources/build/assets.json'

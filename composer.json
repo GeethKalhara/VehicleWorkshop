@@ -48,7 +48,8 @@
       "check": "Style + static analysis (what pre-push runs)"
    },
    "require": {
-      "php": "^8.5"
+      "php": "^8.5",
+      "ext-sodium": "*"
    },
    "require-dev": {
       "deptrac/deptrac": "^4.7",
