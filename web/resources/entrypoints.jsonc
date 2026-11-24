@@ -14,6 +14,12 @@
    "ts/customer/vehicles.ts",
    "css/customer/appointments.css",
    "css/customer/history.css",
+   "css/customer/profile.css",
+   "css/customer/booking.css",
+   "ts/customer/booking.ts",
+   "css/customer/invoices.css",
+   "ts/customer/invoices.ts",
+   "css/customer/invoice-detail.css",
 
    // dummy
    "css/dummy/dummy.css"

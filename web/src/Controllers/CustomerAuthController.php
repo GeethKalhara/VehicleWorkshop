@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Vwork\Web\Controllers;
 
 use Vwork\Shared\Collections\IRegistry;
+use Vwork\Web\Http\Cookies\HttpCookies;
 use Vwork\Web\Http\Request\Request;
 use Vwork\Web\Http\Response\Response;
 
@@ -77,5 +78,16 @@ final readonly class CustomerAuthController extends ControllerBase
         ], 'layouts/auth');
 
         return Response::single()->html($html);
+    }
+
+    /**
+     * @param StringMap $attr
+     */
+    #[ControllerAction]
+    public function logout(Request $req, array $attr): Response
+    {
+        return Response::single()
+            ->redirect('/customer/login')
+            ->expireCookie(HttpCookies::SessionToken);
     }
 }

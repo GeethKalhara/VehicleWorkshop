@@ -8,6 +8,7 @@
 /* Outer Auth Wrapper */
 .auth-page-wrapper {
    min-height: 100vh;
+   min-height: 100dvh;
    width: 100%;
    display: flex;
    align-items: center;
@@ -15,7 +16,8 @@
    padding: 1.25rem;
    background-color: #020617;
    position: relative;
-   overflow: hidden;
+   overflow-x: clip;
+   overflow-y: auto;
 }
 
 @media (min-width: 640px) {
@@ -108,14 +110,15 @@
 @media (min-width: 1024px) {
    .auth-card {
       flex-direction: row;
-      height: 760px;
-      min-height: 760px;
+      height: min(760px, calc(100dvh - 4rem));
+      min-height: min(640px, calc(100dvh - 4rem));
    }
 }
 
 /* Left Showcase Panel (Dark Brand Section) */
 .auth-left-panel {
    width: 100%;
+   min-width: 0;
    background-color: #111827;
    padding: 2rem;
    display: flex;
@@ -135,6 +138,7 @@
 @media (min-width: 1024px) {
    .auth-left-panel {
       width: 48%;
+      flex: 0 1 48%;
       padding: 3rem;
    }
 }
@@ -196,6 +200,7 @@
 /* Right Form Panel (Clean Light Section) */
 .auth-right-panel {
    width: 100%;
+   min-width: 0;
    background-color: #ffffff;
    padding: 1.5rem;
    display: flex;
@@ -215,10 +220,43 @@
 @media (min-width: 1024px) {
    .auth-right-panel {
       width: 52%;
+      flex: 1 1 52%;
       padding: 3rem;
       border-top-left-radius: 0;
       border-top-right-radius: 36px;
       border-bottom-right-radius: 36px;
+   }
+}
+
+@media (max-width: 639px) {
+   .auth-page-wrapper {
+      align-items: flex-start;
+      padding: 0.75rem;
+   }
+
+   .auth-card {
+      min-height: 0;
+      border-radius: 1.25rem;
+   }
+
+   .auth-left-panel {
+      padding: 1.25rem;
+   }
+
+   .auth-left-content {
+      padding: 0.75rem 0;
+   }
+
+   .auth-left-heading {
+      font-size: clamp(1.75rem, 8vw, 2.25rem);
+   }
+
+   .auth-right-panel {
+      padding: 1.25rem;
+   }
+
+   .auth-form-container {
+      padding: 1rem 0;
    }
 }
 

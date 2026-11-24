@@ -10,6 +10,8 @@
  *     id: int|string,
  *     license_plate: string,
  *     model: string,
+ *     mileage: string,
+ *     vin: string,
  *     trim_badge: string,
  *     image: string,
  *     color_name?: string,
@@ -79,21 +81,30 @@ $active_service_count = $stats['active_service_count'] ?? count(array_filter(
 
     <!-- ======================================================== -->
     <!-- VEHICLES CARDS GRID                                      -->
-    <!-- Mileage removed, "View History" orange button instead    -->
+    <!-- Vehicle cards with details available from the options menu -->
     <!-- ======================================================== -->
     <section class="vehicles-grid" aria-label="My Vehicles List">
         <?php foreach ($vehicles as $vehicle): ?>
-            <article class="vehicle-card">
+            <article
+                class="vehicle-card"
+                data-mileage="<?= $escape($vehicle['mileage']) ?>"
+                data-vin="<?= $escape($vehicle['vin']) ?>"
+            >
                 <!-- Card Topbar -->
                 <div class="vehicle-card-topbar">
                     <span class="license-plate-badge"><?= $escape($vehicle['license_plate']) ?></span>
-                    <button type="button" class="vehicle-kebab-btn" aria-label="Vehicle options">
-                        <svg fill="currentColor" viewBox="0 0 24 24" width="18" height="18">
-                            <circle cx="12" cy="5" r="1.75" />
-                            <circle cx="12" cy="12" r="1.75" />
-                            <circle cx="12" cy="19" r="1.75" />
-                        </svg>
-                    </button>
+                    <details class="vehicle-options">
+                        <summary class="vehicle-kebab-btn" aria-label="Vehicle options" title="Vehicle options">
+                            <svg fill="currentColor" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                <circle cx="12" cy="5" r="1.75" />
+                                <circle cx="12" cy="12" r="1.75" />
+                                <circle cx="12" cy="19" r="1.75" />
+                            </svg>
+                        </summary>
+                        <div class="vehicle-options-menu">
+                            <button type="button" data-view-vehicle-details>View details</button>
+                        </div>
+                    </details>
                 </div>
 
                 <!-- Vehicle Title -->
@@ -134,3 +145,36 @@ $active_service_count = $stats['active_service_count'] ?? count(array_filter(
     </section>
 
 </div>
+
+<dialog class="vehicle-details-dialog" id="vehicle-details-dialog" aria-labelledby="vehicle-details-title">
+    <div class="vehicle-details-heading">
+        <div>
+            <span class="vehicle-details-eyebrow">Vehicle details</span>
+            <h2 id="vehicle-details-title"></h2>
+        </div>
+        <button type="button" class="vehicle-details-close" aria-label="Close vehicle details">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+
+    <dl class="vehicle-details-list">
+        <div>
+            <dt>Model</dt>
+            <dd id="vehicle-details-model"></dd>
+        </div>
+        <div>
+            <dt>Registration number</dt>
+            <dd id="vehicle-details-registration"></dd>
+        </div>
+        <div>
+            <dt>Mileage</dt>
+            <dd id="vehicle-details-mileage"></dd>
+        </div>
+        <div>
+            <dt>VIN</dt>
+            <dd id="vehicle-details-vin"></dd>
+        </div>
+    </dl>
+</dialog>

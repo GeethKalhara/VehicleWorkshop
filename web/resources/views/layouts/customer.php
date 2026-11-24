@@ -108,12 +108,20 @@ $current_route_label = $current_route === 'history' ? 'Repair History' : ucfirst
                         <span>Repair History</span>
                     </a>
 
-                    <!-- 5. Payments -->
-                    <a href="/customer/payments" class="sidebar-nav-link <?= $current_route === 'payments' ? 'active' : '' ?>">
+                    <!-- 5. Invoices -->
+                    <a href="/customer/invoices" class="sidebar-nav-link <?= $current_route === 'invoices' ? 'active' : '' ?>">
                         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z" />
                         </svg>
-                        <span>Payments</span>
+                        <span>Invoices</span>
+                    </a>
+
+                    <!-- 6. Profile -->
+                    <a href="/customer/profile" class="sidebar-nav-link <?= $current_route === 'profile' ? 'active' : '' ?>">
+                        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14c-4.418 0-8 2.239-8 5v1h16v-1c0-2.761-3.582-5-8-5z" />
+                        </svg>
+                        <span>Profile</span>
                     </a>
                 </div>
             </nav>

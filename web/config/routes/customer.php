@@ -71,9 +71,57 @@ return [
 
     [
         'method'     => HttpMethods::GET,
+        'path'       => '/customer/appointments/book',
+        'controller' => ['class' => CustomerDashboardController::class, 'method' => 'appointmentBookingPage'],
+        'middleware' => [],
+        'context'    => [],
+    ],
+
+    [
+        'method'     => HttpMethods::GET,
         'path'       => '/customer/history',
         'controller' => ['class' => CustomerDashboardController::class, 'method' => 'historyPage'],
         'middleware' => [],
         'context'    => [],
     ],
+
+    [
+        'method'     => HttpMethods::GET,
+        'path'       => '/customer/invoices',
+        'controller' => ['class' => CustomerDashboardController::class, 'method' => 'invoicesPage'],
+        'middleware' => [],
+        'context'    => [],
+    ],
+
+    [
+        'method'     => HttpMethods::GET,
+        'path'       => '/customer/invoices/{id}/print',
+        'controller' => ['class' => CustomerDashboardController::class, 'method' => 'invoicePrintPage'],
+        'middleware' => [],
+        'context'    => [],
+    ],
+
+    [
+        'method'     => HttpMethods::GET,
+        'path'       => '/customer/invoices/{id}',
+        'controller' => ['class' => CustomerDashboardController::class, 'method' => 'invoiceDetailPage'],
+        'middleware' => [],
+        'context'    => [],
+    ],
+
+    [
+        'method'     => HttpMethods::GET,
+        'path'       => '/customer/profile',
+        'controller' => ['class' => CustomerDashboardController::class, 'method' => 'profilePage'],
+        'middleware' => [],
+        'context'    => [],
+    ],
+
+    [
+        'method' => HttpMethods::POST,
+        'path' => '/customer/logout',
+        'controller' => ['class' => CustomerAuthController::class, 'method' => 'logout'],
+        'middleware' => [],
+        'context'    => [],
+    ]
 ];

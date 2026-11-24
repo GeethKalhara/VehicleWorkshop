@@ -491,3 +491,73 @@
       width: 100%;
    }
 }
+
+/* --------------------------------------------------------------------------
+   Table row & cell utilities (used in appointments table rows)
+   -------------------------------------------------------------------------- */
+
+.appointment-row {
+   transition: background-color 0.1s ease;
+}
+
+.appointment-row:hover {
+   background: #fbfdff;
+}
+
+/* td-* classes set min-width / alignment per column */
+.td-datetime {
+   min-width: 10rem;
+}
+
+.td-vehicle {
+   min-width: 10rem;
+}
+
+.td-service {
+   min-width: 9rem;
+}
+
+.td-status {
+   min-width: 8rem;
+}
+
+/* Pagination bar */
+.appointments-pagination {
+   display: flex;
+   align-items: center;
+   gap: 0.25rem;
+   margin-left: auto;
+}
+
+.pagination-btn {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   min-width: 2rem;
+   height: 2rem;
+   padding: 0 0.5rem;
+   border: 1px solid #e2e8f0;
+   border-radius: var(--radius-md);
+   background: #ffffff;
+   color: #64748b;
+   font-size: 0.75rem;
+   font-weight: 500;
+   transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+.pagination-btn:hover:not(.disabled) {
+   background: #f8fafc;
+   color: #0f172a;
+}
+
+.pagination-btn.pagination-active {
+   border-color: #f97316;
+   background: #f97316;
+   color: #ffffff;
+}
+
+.pagination-btn.disabled {
+   opacity: 0.4;
+   pointer-events: none;
+   cursor: default;
+}
